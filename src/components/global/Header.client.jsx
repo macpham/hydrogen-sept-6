@@ -141,7 +141,7 @@ function DesktopHeader({countryCode, isHome, menu, openCart, title}) {
     <header role="banner" className={styles.container}>
       <div className="flex gap-12">
         <Link className={`font-bold`} to="/">
-          🍁 Edition - {title}
+          Wee! - {title}
         </Link>
         <nav className="flex gap-8">
           {/* Top level menu items */}
