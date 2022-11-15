@@ -1,7 +1,7 @@
 # Don't change the line below!
-#! oxygen_storefront_id: 26640440
+#! oxygen_storefront_id: 29786168
 
-name: Storefront 26640440
+name: Storefront 29786168
 on: [push]
 
 permissions:
@@ -14,19 +14,19 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '16'
           check-latest: true
 
       - name: Get yarn cache directory
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -41,7 +41,7 @@ jobs:
         id: deploy
         uses: shopify/oxygenctl-action@v4
         with:
-          oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_26640440 }}
+          oxygen_deployment_token: ${{ secrets.OXYGEN_DEPLOYMENT_TOKEN_29786168 }}
           build_command: "HYDROGEN_ASSET_BASE_URL=$OXYGEN_ASSET_BASE_URL yarn build"
 
       # Create GitHub Deployment
